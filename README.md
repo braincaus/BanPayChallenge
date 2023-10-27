@@ -1,5 +1,7 @@
 # BanPay Challenge
 
+## Description
+
 This code was developed in order to solve a Challenge given by BanPay.
 
 The solution was built using Django as framework.
@@ -28,3 +30,10 @@ Groups are a predefined list (FILMS, PEOPLE, LOCATIONS, SPECIES, VEHICLES).
 Only Oneself can change password.
 
 And Ghibli endpoint requires be authenticated.
+
+
+## Run Local
+
+In order to run project local, it is required to create a ***'.env'*** file
+
+
