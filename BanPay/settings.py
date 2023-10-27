@@ -12,20 +12,31 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+import environ
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+env = environ.Env(DEBUG=(bool, False))
+env_file = os.path.join(BASE_DIR, ".env")
+
+if os.path.isfile(env_file):
+    # Use a local secret file, if provided
+    env.read_env(env_file)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-b!q4pswj4svn$8bn&1+5o-&oh$^6u#a)*os&ft!+2$l!tk1le_'
+# SECRET_KEY = 'django-insecure-b!q4pswj4svn$8bn&1+5o-&oh$^6u#a)*os&ft!+2$l!tk1le_'
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -78,9 +89,14 @@ WSGI_APPLICATION = 'BanPay.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('BANPAY_DB'),
+        'USER': env('BANPAY_DB_USER'),
+        'PASSWORD': env('BANPAY_DB_PASS'),
+        'HOST': env('BANPAY_DB_SERVER'),
+        'PORT': env('BANPAY_DB_SERVER_PORT'),
     }
+
 }
 
 
