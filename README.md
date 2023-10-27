@@ -34,6 +34,20 @@ And Ghibli endpoint requires be authenticated.
 
 ## Run Local
 
-In order to run project local, it is required to create a ***'.env'*** file
+In order to run project local with docker, it is required to have docker installed and create a ***'.env'*** file like:
 
+```
+SECRET_KEY=AlEhusyffxbtgfXeVmbTbiahiGwMxfnZWDjnhWsgWqUUBspMzd
+DEBUG=True
+POSTGRES_SERVER=localhost
+POSTGRES_PORT=5432
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_DB=banpay_db
+```
 
+and execute:
+
+```
+docker compose up -d
+```
