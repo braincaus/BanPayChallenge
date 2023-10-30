@@ -20,3 +20,7 @@ RUN apk add --no-cache --virtual .build-deps \
     && apk del .build-deps
 
 EXPOSE 8000
+
+RUN pip install gunicorn
+
+CMD [ "gunicorn", "--bind", "0.0.0.0:8000", "BanPay.wsgi:application" ]
